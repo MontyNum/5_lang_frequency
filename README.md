@@ -10,6 +10,12 @@ This script returns 20 (by default) the most frequent words of a text file.
 
     Split any text on words. Returns a list of the words which contain in our text file.
     
-**get_words_frequency(***split_text***)**
+**get_word_frequencies(***split_text***)**
 
     Return a list of the words and its frequencies of using in the text.
+
+**get_most_frequent_words(***word_frequencies, number_of_words=20***)**
+
+    Return 20 (by default) the most frequent words of interesting text.
+    
+# Usage
