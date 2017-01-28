@@ -13,30 +13,27 @@ def detect_encoding(file_path):
     with open(file_path, 'rb') as file_handler:
         encoding = chardet.detect(file_handler.readline())
         return encoding['encoding']
-    
-def read_data(file_txt):
-    return file_txt.lower()
 
-def get_split_text(txt_content):
-    return re.findall('\w+', txt_content)
+def get_split_text(text_content):
+    return re.findall('\w+', text_content)
 
-def get_words_frequency(split_text):
+def get_word_frequencies(split_text):
     unic_words = set(split_text)
     number_words = len(split_text)
     words_frequency = [(word, split_text.count(word) / number_words) \
                        for word in unic_words]
     return words_frequency
 
-def get_most_frequent_words(words_frequency, frequent_words_number=20):
+def get_most_frequent_words(word_frequencies, number_of_words=20):
     most_frequent_words = [word for word, value in \
-                           sorted(words_frequency, key=lambda x: -x[1])]
-    return most_frequent_words[:frequent_words_number]
+                           sorted(word_frequencies, key=lambda x: -x[1])]
+    return most_frequent_words[:number_of_words]
 
 
 if __name__ == '__main__':
     file_path = input('Enter path of file: ')
     text = load_data(file_path)
     split_text = get_split_text(text)
-    words_frequency = get_words_frequency(split_text)
-    most_frequent_words = get_most_frequent_words(words_frequency)
+    word_frequencies = get_word_frequencies(split_text)
+    most_frequent_words = get_most_frequent_words(word_frequencies)
     print(most_frequent_words)
